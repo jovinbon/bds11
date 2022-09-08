@@ -16,11 +16,22 @@ const Form = () => {
 
   const history = useHistory();
 
-  const { register, handleSubmit, formState: { errors }, control } = useForm<Employee>();
-
+  const { register, handleSubmit, formState: { errors }, setValue, control } = useForm<Employee>();
 
   useEffect(() => {
-    requestBackend({ url: "/departments", withCredentials: true})
+    requestBackend( { url: `/employees`, withCredentials: true } )
+            .then((response) => {
+
+              const amployee = response.data as Employee;
+
+              setValue('name', amployee.name);
+              setValue('email', amployee.email);
+              setValue('department', amployee.department);
+            });
+  }, [setValue])
+
+  useEffect(() => {
+    requestBackend({ url: "/departments", withCredentials: true })
       .then(response => {
         setSelectDepartments(response.data);
       })
