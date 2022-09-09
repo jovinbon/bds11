@@ -28,7 +28,7 @@ const Form = () => {
               setValue('email', amployee.email);
               setValue('department', amployee.department);
             });
-  }, [setValue])
+  }, [setValue]);
 
   useEffect(() => {
     requestBackend({ url: "/departments", withCredentials: true })
@@ -37,11 +37,12 @@ const Form = () => {
       })
   }, []);
 
-  const onSubmit = () => {
+  const onSubmit = (formData: Employee) => {
 
     const config: AxiosRequestConfig = {
       method: 'POST',
       url: "/employees",
+      data: formData,
       withCredentials: true
     };
 
