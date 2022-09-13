@@ -24,7 +24,7 @@ describe('Employee form create tests', () => {
     
         const nameInput = screen.getByTestId("name");
         const emailInput = screen.getByTestId("email");
-        const categoriesInput = screen.getByLabelText("Departamento");
+        const categoriesInput = screen.getByLabelText("Departments");
 
         await selectEvent.select(categoriesInput, 'Sales');
         userEvent.type(nameInput, 'Abel');
@@ -34,7 +34,7 @@ describe('Employee form create tests', () => {
         userEvent.click(submitButton);
 
         await waitFor(() => {
-            const toastElement = screen.getByText('Cadastrado com sucesso');
+            const toastElement = screen.getByText('Empregado cadastrado com sucesso');
             expect(toastElement).toBeInTheDocument();
         });
 
@@ -96,7 +96,7 @@ describe('Employee form create tests', () => {
 
         const nameInput = screen.getByTestId("name");
         const emailInput = screen.getByTestId("email");
-        const categoriesInput = screen.getByLabelText("Departamento");
+        const categoriesInput = screen.getByLabelText("Departments");
 
         await selectEvent.select(categoriesInput, 'Sales');
         userEvent.type(nameInput, 'Abel');

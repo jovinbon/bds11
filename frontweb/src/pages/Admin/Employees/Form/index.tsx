@@ -86,16 +86,17 @@ const Form = () => {
 
               <div className="margin-bottom-30">
                 <input {...register('email', {
-                  required: 'Campo obrigatório.',
+                  required: 'Campo obrigatório',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Email inválido.'
+                    message: 'Email inválido'
                   }
                 })}
                   type="text"
                   className={`form-control base-input ${errors.email ? 'is-invalid' : ''}`}
                   placeholder="Email"
                   name="email"
+                  data-testid="email"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.email?.message}
@@ -112,7 +113,6 @@ const Form = () => {
                     <Select {...field}
                       options={selectDepartments}
                       classNamePrefix="employee-crud-select"
-                      isMulti
                       getOptionLabel={(department: Department) => department.name}
                       getOptionValue={(department: Department) => String(department.id)}
                       inputId="department"
